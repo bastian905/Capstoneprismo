@@ -1,0 +1,1383 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+}
+
+body {
+	background: #ffffff;
+	overflow-x: hidden;
+	min-height: 100vh;
+	position: relative;
+}
+
+/* ==== FORM AREA ==== */
+.form-container {
+	position: absolute;
+	top: 0;
+	width: 50%;
+	height: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	background-color: #ffffff;
+	transition: all 0.6s ease-in-out;
+	padding-top: 0;
+}
+
+.sign-in {
+	left: 0;
+	z-index: 2;
+}
+
+.sign-up {
+	left: 0;
+	z-index: 1;
+	opacity: 0;
+}
+
+/* ==== ANIMASI GESER ==== */
+body.active .sign-in {
+	transform: translateX(100%);
+	opacity: 0;
+}
+
+body.active .sign-up {
+	transform: translateX(100%);
+	opacity: 1;
+	z-index: 5;
+}
+
+/* ==== LOGO CONTAINER ==== */
+.logo-container {
+	width: 100%;
+	max-width: 400px;
+	margin-bottom: 30px;
+	text-align: left;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	height: 50px;
+	width: auto;
+	object-fit: contain;
+}
+
+/* ==== FORM STYLING ==== */
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 0 40px;
+	width: 100%;
+	max-width: 450px;
+	height: 100%;
+}
+
+/* ==== JUDUL FORM ==== */
+.form-title {
+	font-size: clamp(28px, 4vw, 36px);
+	font-weight: 700;
+	margin-bottom: clamp(20px, 4vh, 40px);
+	color: #003049;
+	text-align: left;
+	width: 100%;
+	max-width: 400px;
+	margin: 0 auto 25px 0;
+	padding-left: 0;
+}
+
+/* ==== INPUT ==== */
+.input-container {
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+	margin: 12px 0;
+	margin-bottom: 20px;
+}
+
+.input-container input {
+	width: 100%;
+	padding: clamp(14px, 2vw, 16px) 15px clamp(14px, 2vw, 16px) 45px;
+	font-size: clamp(13px, 1.5vw, 14px);
+	border: 1.5px solid #E0E0E0;
+	border-radius: 8px;
+	outline: none;
+	transition: border 0.3s;
+	background: #FAFAFA;
+}
+
+.input-container input:focus {
+	border-color: #007bff;
+	background: #FFFFFF;
+}
+
+.input-container input::placeholder {
+	color: #666;
+}
+
+/* ==== IKON INPUT ==== */
+.input-container::before {
+	content: "";
+	position: absolute;
+	left: 15px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: clamp(18px, 2vw, 20px);
+	height: clamp(18px, 2vw, 20px);
+	background-size: contain;
+	background-repeat: no-repeat;
+	pointer-events: none;
+}
+
+.input-container.email::before {
+	background-image: url('/images/email.png');
+}
+
+.input-container.telepon::before {
+	background-image: url('/images/telepon.png');
+}
+
+.input-container.password::before {
+	background-image: url('/images/password.png');
+}
+
+/* ==== MATA PASSWORD ==== */
+.toggle-password {
+	position: absolute;
+	right: 15px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	color: #777;
+	font-size: clamp(16px, 2vw, 18px);
+	transition: color 0.2s;
+}
+
+.toggle-password:hover {
+	color: #007bff;
+}
+
+/* ==== PASSWORD STRENGTH ==== */
+.password-strength {
+	width: 100%;
+	max-width: 400px;
+	margin: -15px 0 15px 0;
+}
+
+.strength-bars {
+	display: flex;
+	gap: 4px;
+}
+
+.strength-bar {
+	flex: 1;
+	height: 3px;
+	background-color: #E5E7EB;
+	border-radius: 2px;
+	transition: all 0.3s ease;
+}
+
+.strength-bar.active {
+	background-color: #3B82F6;
+}
+
+.strength-bar.active.weak {
+	background-color: #EF4444;
+}
+
+.strength-bar.active.medium {
+	background-color: #F59E0B;
+}
+
+.strength-bar.active.strong {
+	background-color: #10B981;
+}
+
+.strength-bar.active.very-strong {
+	background-color: #059669;
+}
+
+/* ==== CHECKBOX ==== */
+.checkbox-container {
+	display: flex;
+	align-items: flex-start;
+	width: 100%;
+	max-width: 400px;
+	margin: 10px 0 20px 0;
+	gap: 10px;
+}
+
+/* ==== ALERT MESSAGES ==== */
+.alert {
+	width: 100%;
+	max-width: 400px;
+	padding: 12px 15px;
+	border-radius: 8px;
+	margin-bottom: 15px;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.alert-error {
+	background-color: #f8d7da;
+	color: #721c24;
+	border: 1px solid #f5c6cb;
+}
+
+.alert-error ul {
+	margin: 0;
+	padding-left: 20px;
+}
+
+.alert-error li {
+	margin: 4px 0;
+}
+
+.alert-success {
+	background-color: #d4edda;
+	color: #155724;
+	border: 1px solid #c3e6cb;
+}
+
+.checkbox-container {
+	display: flex;
+	align-items: flex-start;
+	width: 100%;
+	max-width: 400px;
+	margin: 10px 0 20px 0;
+	gap: 10px;
+}
+
+.checkbox-container input[type="checkbox"] {
+	width: clamp(16px, 2vw, 18px);
+	height: clamp(16px, 2vw, 18px);
+	margin-top: 2px;
+	accent-color: #007bff;
+	flex-shrink: 0;
+}
+
+.checkbox-container label {
+	font-size: clamp(12px, 1.5vw, 14px);
+	color: #333;
+	line-height: 1.4;
+}
+
+.checkbox-container a {
+	color: #007bff;
+	text-decoration: none;
+}
+
+.checkbox-container a:hover {
+	text-decoration: underline;
+}
+
+/* ==== LUPA PASSWORD ==== */
+.forgot-password-container {
+	width: 100%;
+	max-width: 400px;
+	text-align: right;
+	margin: 5px 0 15px 0;
+}
+
+#forgot-password {
+	background: none;
+	border: none;
+	color: #007bff;
+	font-size: clamp(12px, 1.5vw, 14px);
+	font-weight: 500;
+	cursor: pointer;
+	text-decoration: underline;
+	transition: color 0.3s;
+	padding: 5px 0;
+}
+
+#forgot-password:hover {
+	color: #0056b3;
+}
+
+/* ==== TOMBOL UTAMA ==== */
+.main-btn {
+	background-color: #007bff;
+	color: #fff;
+	font-size: clamp(14px, 1.8vw, 16px);
+	padding: clamp(14px, 2vw, 16px) 0;
+	border: none;
+	border-radius: 8px;
+	font-weight: 600;
+	width: 100%;
+	max-width: 400px;
+	margin: 10px 0;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+}
+
+.main-btn:hover {
+	background-color: #0056b3;
+}
+
+/* ==== TOMBOL GOOGLE ==== */
+.google-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	width: 100%;
+	max-width: 400px;
+	padding: clamp(12px, 2vw, 14px) 0;
+	background: #FFFFFF;
+	border: 2px solid #E0E0E0;
+	border-radius: 8px;
+	font-size: clamp(13px, 1.5vw, 14px);
+	font-weight: 600;
+	color: #333;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	text-decoration: none;
+}
+
+.google-btn:hover {
+	border-color: #007bff;
+	background: #F8F9FA;
+	text-decoration: none;
+	color: #333;
+}
+
+.google-icon {
+	width: 18px;
+	height: 18px;
+	object-fit: contain;
+}
+
+/* ==== DIVIDER ==== */
+.divider {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	max-width: 400px;
+	margin: clamp(15px, 3vh, 20px) 0;
+	color: #666;
+}
+
+.divider::before,
+.divider::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: #E0E0E0;
+}
+
+.divider span {
+	padding: 0 15px;
+	font-size: clamp(12px, 1.5vw, 14px);
+	color: #666;
+}
+
+/* ==== LINK LOGIN/REGISTER ==== */
+.login-link {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: clamp(20px, 4vh, 25px);
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.login-link small {
+	color: #666;
+	font-size: clamp(12px, 1.5vw, 14px);
+}
+
+#register,
+#login {
+	background: none;
+	color: #007bff;
+	border: none;
+	font-weight: 500;
+	font-size: clamp(12px, 1.5vw, 14px);
+	cursor: pointer;
+	text-decoration: underline;
+	transition: color 0.3s;
+	white-space: nowrap;
+}
+
+#register:hover,
+#login:hover {
+	color: #0056b3;
+	text-decoration: none;
+}
+
+/* ==== GAMBAR SAMPING ==== */
+.toggle {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100vh;
+	background-image: url('/images/gambar1.png');
+	background-size: cover;
+	background-position: top;
+	transition: transform 0.6s ease-in-out, border-radius 0.4s ease-in-out 0.1s;
+	z-index: 10;
+	overflow: hidden;
+	border-radius: 90px 0 0 90px;
+}
+
+body.active .toggle {
+	transform: translateX(-100%);
+	border-radius: 0 90px 90px 0;
+}
+
+/* ==== TOGGLE CUSTOMER/MITRA ==== */
+.customer-type-toggle {
+    position: relative;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 20;
+    transition: all 0.3s ease;
+}
+
+.toggle-label {
+    color: #003049;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.toggle-buttons {
+    display: flex;
+    background: #f0f0f0;
+    border-radius: 25px;
+    padding: 4px;
+    border: 2px solid #E0E0E0;
+}
+
+.type-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    background: transparent;
+    color: #666;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.type-btn.active {
+    background: #007bff;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.type-btn:hover:not(.active) {
+    background: #e0e0e0;
+    color: #333;
+}
+
+/* POSISI TOGGLE CUSTOMER/MITRA DI MOBILE */
+.customer-type-toggle.mobile-position {
+    position: relative !important;
+    top: 0 !important;
+    right: 0 !important;
+    justify-content: center;
+    margin: -10px 0 25px 0 !important;
+    width: 100%;
+    order: 2;
+}
+
+.customer-type-toggle.mobile-position .toggle-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #003049;
+}
+
+.customer-type-toggle.mobile-position .toggle-buttons {
+    margin-top: 8px;
+}
+
+/* ==== MODAL LUPA PASSWORD ==== */
+.forgot-password-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.forgot-password-modal.active {
+    display: flex;
+}
+
+.forgot-password-modal .modal-content {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 0;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.forgot-password-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px 20px 30px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.forgot-password-modal .modal-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #003049;
+    margin: 0;
+}
+
+.forgot-password-modal .modal-body {
+    padding: 0 30px;
+}
+
+.modal-logo-container {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0 15px 0;
+}
+
+.modal-logo {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+.modal-description {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Form dalam modal */
+.forgot-password-form {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.forgot-password-form .input-container {
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.forgot-password-form .input-container input {
+    background: #FAFAFA;
+    border: 1.5px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.forgot-password-form .input-container input:focus {
+    border-color: #007bff;
+    background: #FFFFFF;
+}
+
+.forgot-password-form .main-btn {
+    max-width: 100%;
+    padding: 14px 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* Footer modal */
+.forgot-password-modal .modal-footer {
+    border-top: 1px solid #E0E0E0;
+    padding: 20px 30px 25px 30px;
+    margin-top: 10px;
+}
+
+.support-links p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.support-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.support-buttons a {
+    background: none;
+    border: none;
+    color: #007bff;
+    font-size: 13px;
+    cursor: pointer;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.support-buttons a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.support-buttons span {
+    color: #ccc;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: #007bff;
+}
+
+/* ==== LOADING SPINNER ==== */
+.loading-spinner {
+    display: none;
+}
+
+.loading-spinner i {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.main-btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.main-btn.loading .btn-text {
+    display: none;
+}
+
+.main-btn.loading .loading-spinner {
+    display: block;
+}
+
+/* ==== KONFIRMASI TERKIRIM ==== */
+.confirmation-message {
+    text-align: center;
+    margin: 20px 0;
+    display: none;
+}
+
+.success-icon {
+    font-size: 60px;
+    color: #28a745;
+    margin-bottom: 20px;
+}
+
+.success-icon i {
+    animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.confirmation-message h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #003049;
+    margin-bottom: 15px;
+}
+
+.confirmation-message p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+#closeAfterSuccess {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+    max-width: 200px;
+}
+
+#closeAfterSuccess:hover {
+    background: #0056b3;
+}
+
+/* ==== MODAL SYARAT & KETENTUAN ==== */
+.terms-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.terms-modal.active {
+    display: flex;
+}
+
+.terms-modal .modal-content {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 0;
+    max-width: 500px;
+    width: 100%;
+    max-height: 70vh;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.terms-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px 20px 30px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.terms-modal .modal-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #003049;
+    margin: 0;
+}
+
+.terms-modal .modal-body {
+    flex: 1;
+    padding: 25px 30px;
+    overflow-y: auto;
+}
+
+.terms-content {
+    line-height: 1.6;
+    color: #333;
+}
+
+.terms-content p {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+/* ==== STYLING UNTUK PESAN ERROR ==== */
+.error-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #dc3545;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 10000;
+    max-width: 400px;
+    white-space: pre-line;
+    display: none;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.input-error {
+    border-color: #dc3545 !important;
+    background: #fff5f5 !important;
+}
+
+.input-success {
+    border-color: #10B981 !important;
+    background: #f0fdf4 !important;
+}
+
+.input-warning {
+    border-color: #F59E0B !important;
+    background: #fffbeb !important;
+}
+
+/* ==== NOTIFICATION TOAST ==== */
+.notification-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    max-width: 400px;
+    display: none;
+}
+
+.notification-toast.show {
+    display: block;
+    animation: slideInRight 0.3s ease-out;
+}
+
+.notification-toast.hide {
+    animation: slideOutRight 0.3s ease-in;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.toast-content {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-left: 4px solid #007bff;
+    position: relative;
+}
+
+.toast-content.success {
+    border-left-color: #28a745;
+}
+
+.toast-content.error {
+    border-left-color: #dc3545;
+}
+
+.toast-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.toast-content.success .toast-icon {
+    background: #28a745;
+    color: white;
+}
+
+.toast-content.error .toast-icon {
+    background: #dc3545;
+    color: white;
+}
+
+.toast-message {
+    flex: 1;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.toast-close:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+/* ========== RESPONSIVE DESIGN ========== *
+
+
+/* Tablet Landscape */
+@media (max-width: 1024px) {
+	.form-container {
+		width: 50%;
+	}
+
+	form {
+		padding: 0 30px;
+		max-width: 380px;
+	}
+
+	.logo-container,
+	.form-title,
+	.input-container,
+	.main-btn,
+	.google-btn,
+	.divider {
+		max-width: 350px;
+	}
+
+    .form-title {
+		margin-left: 0;
+		padding-left: 0;
+		text-align: left;
+		width: 100%;
+		max-width: 350px;
+	}
+
+    .logo-container {
+		text-align: left;
+		margin-left: 0;
+		padding-left: 0;
+	}
+    
+    .toggle-label {
+        font-size: 13px;
+    }
+    
+    .type-btn {
+        padding: 7px 18px;
+        font-size: 12px;
+    }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+    .form-title {
+        text-align: center;
+        margin: 0 auto 25px auto;
+        padding-left: 0;
+    }
+
+    body {
+        overflow-y: auto;
+    }
+
+    .form-container {
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        padding: 60px 0;
+        position: relative;
+    }
+
+    .sign-in {
+        position: relative;
+        z-index: 2;
+    }
+
+    .sign-up {
+        position: relative;
+        z-index: 1;
+        opacity: 0;
+        display: none;
+        padding-top: 80px;
+    }
+
+    body.active .sign-in {
+        transform: translateX(0);
+        opacity: 0;
+        display: none;
+    }
+
+    body.active .sign-up {
+        transform: translateX(0);
+        opacity: 1;
+        display: flex;
+    }
+
+    .toggle {
+        display: none;
+    }
+
+    form {
+        padding: 0 25px;
+        max-width: 400px;
+        height: auto;
+    }
+
+    .logo-container {
+        max-width: 100%;
+        text-align: center;
+        margin-bottom: 25px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .logo-container .customer-type-toggle {
+        display: none;
+    }
+
+    .form-title {
+        text-align: center;
+        max-width: 100%;
+        margin-left: 0;
+        margin-bottom: 25px;
+    }
+
+    .input-container,
+    .main-btn,
+    .google-btn,
+    .divider {
+        max-width: 100%;
+    }
+
+    .forgot-password-container {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .customer-type-toggle:not(.mobile-position) {
+        display: none;
+    }
+
+    .customer-type-toggle.mobile-position {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 25px !important;
+        position: relative !important;
+        width: 100%;
+    }
+
+    .sign-up form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .sign-up .form-title {
+        order: 1;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .customer-type-toggle.mobile-position {
+        order: 2;
+        margin-bottom: 25px !important;
+    }
+    
+    .sign-up .input-container,
+    .sign-up .checkbox-container,
+    .sign-up .main-btn,
+    .sign-up .divider,
+    .sign-up .google-btn,
+    .sign-up .login-link {
+        order: 3;
+    }
+
+	.error-message {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+
+    .notification-toast {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+    
+    .toast-content {
+        padding: 14px 16px;
+    }
+}
+
+/* Mobile Large */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 40px 0;
+    }
+
+    .sign-up {
+        padding-top: 60px;
+    }
+
+    form {
+        padding: 0 20px;
+    }
+
+    .logo-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .logo {
+        height: 45px;
+    }
+
+    .modal-logo {
+        height: 40px;
+    }
+
+    .form-title {
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .input-container {
+        margin: 10px 0;
+    }
+
+    .input-container input {
+        padding: 12px 15px 12px 40px;
+    }
+
+    .input-container::before {
+        left: 12px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .checkbox-container {
+        margin: 8px 0 15px 0;
+    }
+
+    .checkbox-container label {
+        font-size: 12px;
+    }
+
+    .main-btn {
+        padding: 14px 0;
+        font-size: 14px;
+    }
+
+    .google-btn {
+        padding: 12px 0;
+        font-size: 13px;
+    }
+
+    .divider {
+        margin: 15px 0;
+    }
+
+    .login-link {
+        margin-top: 20px;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .forgot-password-container {
+        margin: 3px 0 12px 0;
+    }
+
+    #forgot-password {
+        font-size: 13px;
+    }
+
+    .customer-type-toggle.mobile-position {
+        margin: -5px 0 20px 0 !important;
+    }
+    
+    .customer-type-toggle.mobile-position .toggle-buttons {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .customer-type-toggle.mobile-position .type-btn {
+        padding: 10px 15px;
+        font-size: 13px;
+        flex: 1;
+    }
+
+    .forgot-password-modal .modal-content {
+        max-width: 90%;
+    }
+    
+    .forgot-password-modal .modal-header {
+        padding: 20px 25px 15px 25px;
+    }
+    
+    .forgot-password-modal .modal-body {
+        padding: 0 25px;
+    }
+    
+    .forgot-password-modal .modal-footer {
+        padding: 15px 25px 20px 25px;
+    }
+    
+    .modal-logo-container {
+        margin: 15px 0 10px 0;
+    }
+    
+    .modal-logo {
+        height: 40px;
+    }
+    
+    .modal-description {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+    
+    .forgot-password-form .input-container input {
+        padding: 12px 16px;
+    }
+    
+    .forgot-password-form .main-btn {
+        padding: 12px 0;
+        font-size: 14px;
+    }
+    
+    .support-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .support-buttons span {
+        display: none;
+    }
+
+    .terms-modal .modal-content {
+        max-width: 90%;
+    }
+    
+    .terms-modal .modal-header {
+        padding: 20px 25px 15px 25px;
+    }
+    
+    .terms-modal .modal-body {
+        padding: 20px 25px;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 320px) {
+    form {
+        padding: 0 15px;
+    }
+
+    .logo-container {
+        margin-bottom: 15px;
+    }
+
+    .logo {
+        height: 40px;
+    }
+
+    .form-title {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .input-container input {
+        padding: 10px 12px 10px 35px;
+        font-size: 12px;
+    }
+
+    .input-container::before {
+        left: 10px;
+        width: 14px;
+        height: 14px;
+    }
+
+    .toggle-password {
+        right: 10px;
+        font-size: 14px;
+    }
+
+    .checkbox-container {
+        gap: 8px;
+    }
+
+    .checkbox-container input[type="checkbox"] {
+        width: 14px;
+        height: 14px;
+    }
+
+    .checkbox-container label {
+        font-size: 11px;
+    }
+
+    .customer-type-toggle.mobile-position .type-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}
+
+/* Height adjustments for very short screens */
+@media (max-height: 600px) {
+    .form-container {
+        padding: 30px 0;
+    }
+
+    .sign-up {
+        padding-top: 50px;
+    }
+
+    form {
+        justify-content: flex-start;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .logo-container {
+        margin-bottom: 15px;
+    }
+
+    .form-title {
+        margin-bottom: 15px;
+    }
+
+    .input-container {
+        margin: 6px 0;
+    }
+
+    .login-link {
+        margin-top: 15px;
+    }
+}

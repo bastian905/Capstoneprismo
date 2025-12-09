@@ -1,0 +1,717 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #00D4FF;
+    --secondary-color: #FFB84D;
+    --success-color: #00D4AA;
+    --text-dark: #2D3436;
+    --text-gray: #636E72;
+    --bg-light: #F5F6FA;
+    --white: #FFFFFF;
+    --shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    --border-radius: 12px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.logo img {
+    height: 35px;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid #DFE6E9;
+    border-radius: 8px;
+    color: var(--text-dark);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: var(--bg-light);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    justify-content: center;
+}
+
+.edit-profile-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 500px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+    text-align: left;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--bg-light);
+}
+
+/* Profile Photo Upload Section */
+.profile-photo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: var(--bg-light);
+    border-radius: var(--border-radius);
+}
+
+.profile-photo-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.photo-upload-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 212, 255, 0.3);
+    transition: all 0.3s ease;
+    border: 3px solid var(--white);
+}
+
+.photo-upload-btn:hover {
+    background: #00B8E6;
+    transform: scale(1.1);
+}
+
+.photo-upload-btn i {
+    font-size: 20px;
+    color: var(--white);
+}
+
+.photo-upload-hint {
+    font-size: 13px;
+    color: var(--text-gray);
+    text-align: center;
+}
+
+/* Form Styles */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #DFE6E9;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    background: var(--white);
+}
+
+.form-group input::placeholder {
+    color: #B2BEC3;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+}
+
+.form-group input:hover {
+    border-color: #B2BEC3;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: #00BDEA;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.submit-btn.loading .btn-text {
+    visibility: hidden;
+}
+
+.btn-loader {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--white);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.submit-btn.loading .btn-loader {
+    display: block;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Success Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #00D4FF 0%, #00D4AA 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    animation: scaleIn 0.5s ease;
+}
+
+.success-icon i {
+    font-size: 45px;
+    color: var(--white);
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.modal-content h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    font-size: 14px;
+    color: var(--text-gray);
+    margin-bottom: 25px;
+}
+
+.ok-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ok-btn:hover {
+    background: #00BDEA;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+/* Responsive Media Queries */
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 16px;
+    }
+
+    .header {
+        padding: 16px;
+        margin-bottom: 24px;
+    }
+
+    .logo img {
+        height: 32px;
+    }
+
+    .back-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .edit-profile-card {
+        padding: 32px 24px;
+    }
+
+    .page-title {
+        font-size: 22px;
+        margin-bottom: 24px;
+    }
+
+    .form-group input {
+        padding: 13px 15px;
+        font-size: 13px;
+    }
+
+    .submit-btn {
+        padding: 14px;
+        font-size: 14px;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        padding: 35px 24px;
+    }
+
+    .success-icon {
+        width: 75px;
+        height: 75px;
+    }
+
+    .success-icon i {
+        font-size: 42px;
+    }
+
+    .modal-content h3 {
+        font-size: 20px;
+    }
+}
+
+/* Mobile Large */
+@media (max-width: 640px) {
+    .container {
+        padding: 12px;
+    }
+
+    .header {
+        padding: 14px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .back-btn {
+        padding: 8px 14px;
+        font-size: 12px;
+        gap: 6px;
+    }
+
+    .edit-profile-card {
+        padding: 28px 20px;
+        border-radius: 10px;
+    }
+
+    .page-title {
+        font-size: 20px;
+        margin-bottom: 22px;
+        padding-bottom: 12px;
+    }
+
+    .edit-form {
+        gap: 18px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .submit-btn {
+        padding: 13px;
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+    .modal-content {
+        max-width: 92%;
+        padding: 32px 20px;
+        border-radius: 10px;
+    }
+
+    .success-icon {
+        width: 72px;
+        height: 72px;
+    }
+
+    .success-icon i {
+        font-size: 40px;
+    }
+
+    .modal-content h3 {
+        font-size: 19px;
+        margin-bottom: 8px;
+    }
+
+    .modal-content p {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .ok-btn {
+        padding: 13px;
+        font-size: 14px;
+    }
+
+    .notification {
+        top: 15px;
+        right: 15px;
+        padding: 12px 16px;
+        font-size: 13px;
+    }
+}
+
+/* Mobile Standard */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+        margin-bottom: 16px;
+    }
+
+    .logo {
+        order: 1;
+    }
+
+    .back-btn {
+        order: 2;
+        padding: 7px 12px;
+        font-size: 11px;
+    }
+
+    .logo img {
+        height: 28px;
+    }
+
+    .edit-profile-card {
+        padding: 24px 16px;
+    }
+
+    .page-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+
+    .edit-form {
+        gap: 16px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+    }
+
+    .form-group input {
+        padding: 11px 13px;
+        font-size: 12px;
+    }
+
+    .submit-btn {
+        padding: 12px;
+        font-size: 13px;
+        margin-top: 6px;
+    }
+
+    .btn-loader {
+        width: 20px;
+        height: 20px;
+        border-width: 2px;
+    }
+
+    .modal-content {
+        max-width: 94%;
+        padding: 28px 18px;
+    }
+
+    .success-icon {
+        width: 68px;
+        height: 68px;
+    }
+
+    .success-icon i {
+        font-size: 38px;
+    }
+
+    .modal-content h3 {
+        font-size: 18px;
+    }
+
+    .modal-content p {
+        font-size: 12px;
+        margin-bottom: 18px;
+    }
+
+    .ok-btn {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .notification {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        padding: 10px 14px;
+        font-size: 12px;
+    }
+
+    .notification i {
+        font-size: 20px;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 375px) {
+    .container {
+        padding: 8px;
+    }
+
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .logo {
+        order: 1;
+    }
+
+    .back-btn {
+        order: 2;
+        padding: 7px 12px;
+        font-size: 10px;
+    }
+
+    .edit-profile-card {
+        padding: 20px 14px;
+    }
+
+    .page-title {
+        font-size: 17px;
+        margin-bottom: 18px;
+    }
+
+    .form-group input {
+        padding: 10px 12px;
+    }
+
+    .submit-btn {
+        padding: 11px;
+        font-size: 12px;
+    }
+
+    .modal-content {
+        padding: 24px 16px;
+    }
+
+    .success-icon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 16px;
+    }
+
+    .success-icon i {
+        font-size: 35px;
+    }
+
+    .modal-content h3 {
+        font-size: 17px;
+    }
+
+    .ok-btn {
+        padding: 11px;
+    }
+}
+
+/* Notification (jika diperlukan) */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10000;
+    animation: slideInRight 0.3s ease;
+}
+
+.notification.success {
+    border-left: 4px solid var(--success-color);
+}
+
+.notification.success i {
+    color: var(--success-color);
+    font-size: 24px;
+}
+
+.notification.error {
+    border-left: 4px solid #FF6B6B;
+}
+
+.notification.error i {
+    color: #FF6B6B;
+    font-size: 24px;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

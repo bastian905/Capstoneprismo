@@ -1,0 +1,471 @@
+/* Reset kecil */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial;
+    background: #f5f6f8;
+    color: #111
+}
+
+/* header (sama style seperti permintaan) */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid #e6eef6;
+    position: sticky;
+    top: 0;
+    z-index: 1200;
+}
+
+.header__content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    gap: 16px;
+    min-height: 72px
+}
+
+.header__brand .logo {
+    height: 40px;
+    display: block
+}
+
+/* wrapper */
+.wrap {
+    max-width: 1100px;
+    margin: 36px auto;
+    padding: 0 20px;
+}
+
+/* panel */
+.panel {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(2, 6, 23, 0.06);
+    overflow: hidden
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 32px;
+    border-bottom: 1px solid #f0f3f6
+}
+
+.panel-header h1 {
+    font-size: 28px;
+    color: #0b2b3a
+}
+
+.add-btn {
+    background: #10b981;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 16px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12)
+}
+
+/* body / table */
+.panel-body {
+    padding: 22px 32px
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px
+}
+
+.admin-table thead th {
+    text-align: left;
+    padding: 14px 8px;
+    color: #3b4a57;
+    font-weight: 600;
+    border-bottom: 1px solid #eef4f7
+}
+
+.admin-table tbody td {
+    padding: 18px 8px;
+    border-bottom: 1px solid #f6f6f8;
+    vertical-align: middle;
+    color: #1f2d36
+}
+
+.col-no {
+    width: 80px
+}
+
+/* owner email smaller */
+.owner-email {
+    color: #6b7280;
+    display: block;
+    margin-top: 6px
+}
+
+/* action buttons */
+.action-btn {
+    background: #f97316;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 6px 14px rgba(249, 115, 22, 0.12);
+}
+
+.action-btn.small {
+    padding: 6px 10px;
+    font-size: 14px
+}
+
+/* MODAL overlay & card */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000
+}
+
+.modal-overlay.show {
+    display: flex
+}
+
+.modal-card {
+    background: #fff;
+    padding: 20px 26px;
+    border-radius: 12px;
+    max-width: 680px;
+    width: 94%;
+    box-shadow: 0 12px 36px rgba(2, 6, 23, 0.16)
+}
+
+.modal-card.small {
+    max-width: 420px
+}
+
+.modal-header h2 {
+    font-size: 20px;
+    color: #0b3040;
+    margin-bottom: 6px
+}
+
+.modal-body {
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.field-label {
+    font-size: 13px;
+    color: #444;
+    margin-bottom: 6px
+}
+
+.input-field {
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid #d6d6d6;
+    font-size: 15px;
+    outline: none
+}
+
+.input-field[readonly] {
+    background: #f3f5f7;
+    color: #6b7280;
+    cursor: not-allowed
+}
+
+
+/* modal actions */
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 12px
+}
+
+.btn {
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+    font-weight: 700
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.12)
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(239, 68, 68, 0.12)
+}
+
+.modal-card .modal-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 6px solid #ffd8b0;
+    color: #ff8a3d;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px auto 12px;
+}
+
+/* Responsive Media Queries */
+
+/* Tablet Landscape */
+@media (max-width: 900px) {
+    .header__content {
+        padding: 12px 16px
+    }
+
+    .panel-header {
+        padding: 20px
+    }
+
+    .panel-body {
+        padding: 16px
+    }
+
+    .panel-header h1 {
+        font-size: 24px
+    }
+
+    .admin-table {
+        font-size: 15px
+    }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+    .wrap {
+        margin: 24px auto;
+        padding: 0 16px
+    }
+
+    .panel {
+        border-radius: 10px
+    }
+
+    .panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px 16px
+    }
+
+    .panel-header h1 {
+        font-size: 22px
+    }
+
+    .add-btn {
+        width: 100%;
+        padding: 12px 16px
+    }
+
+    .panel-body {
+        padding: 12px 16px;
+        overflow-x: auto
+    }
+
+    .admin-table {
+        font-size: 14px;
+        min-width: 600px
+    }
+
+    .admin-table thead th {
+        padding: 12px 6px;
+        font-size: 13px
+    }
+
+    .admin-table tbody td {
+        padding: 14px 6px
+    }
+
+    .col-no {
+        width: 60px
+    }
+
+    .owner-email {
+        font-size: 13px
+    }
+
+    .modal-card {
+        max-width: 90%;
+        padding: 18px 20px
+    }
+}
+
+/* Mobile Large */
+@media (max-width: 640px) {
+    .wrap {
+        margin: 20px auto;
+        padding: 0 12px
+    }
+
+    .header__content {
+        padding: 10px 12px
+    }
+
+    .header__brand .logo {
+        height: 32px
+    }
+
+    .panel-header {
+        padding: 16px 12px
+    }
+
+    .panel-header h1 {
+        font-size: 20px
+    }
+
+    .panel-body {
+        padding: 8px 12px
+    }
+
+    .admin-table {
+        font-size: 13px
+    }
+
+    .admin-table thead th {
+        padding: 10px 4px;
+        font-size: 12px
+    }
+
+    .admin-table tbody td {
+        padding: 12px 4px
+    }
+
+    .action-btn {
+        padding: 6px 10px;
+        font-size: 13px
+    }
+
+    .modal-card {
+        padding: 16px
+    }
+
+    .modal-header h2 {
+        font-size: 18px
+    }
+
+    .input-field {
+        padding: 12px 14px;
+        font-size: 14px
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 14px
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+    .wrap {
+        margin: 16px auto;
+        padding: 0 8px
+    }
+
+    .panel {
+        border-radius: 8px
+    }
+
+    .panel-header {
+        padding: 14px 10px
+    }
+
+    .panel-header h1 {
+        font-size: 18px
+    }
+
+    .add-btn {
+        padding: 10px 14px;
+        font-size: 14px
+    }
+
+    .panel-body {
+        padding: 6px 10px
+    }
+
+    .admin-table {
+        font-size: 12px
+    }
+
+    .admin-table thead th {
+        padding: 8px 3px;
+        font-size: 11px
+    }
+
+    .admin-table tbody td {
+        padding: 10px 3px
+    }
+
+    .col-no {
+        width: 50px
+    }
+
+    .owner-email {
+        font-size: 11px;
+        margin-top: 4px
+    }
+
+    .action-btn {
+        padding: 5px 8px;
+        font-size: 12px
+    }
+
+    .modal-card {
+        max-width: 95%;
+        padding: 14px
+    }
+
+    .modal-header h2 {
+        font-size: 16px
+    }
+
+    .modal-card .modal-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        border: 4px solid #ffd8b0
+    }
+
+    .input-field {
+        padding: 10px 12px;
+        font-size: 13px
+    }
+
+    .modal-actions {
+        flex-direction: column;
+        gap: 8px
+    }
+
+    .btn {
+        width: 100%;
+        padding: 10px 14px;
+        font-size: 13px
+    }
+}

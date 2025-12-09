@@ -1,0 +1,996 @@
+/* ============================================
+   RESPONSIVE & PROGRESSIVE CSS
+   Car Wash Landing Page - Cleaned & Optimized
+   ============================================ */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.header * {
+    box-sizing: border-box;
+}
+
+/* ============================================
+   HEADER STYLES
+   ============================================ */
+.header {
+            background: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            grid-template-areas: "logo nav buttons";
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        /* ========== LOGO ========== */
+        .logo {
+grid-area: logo;
+flex-shrink: 0;
+display: flex;
+align-items: center;
+}
+
+.logo a {
+display: inline-flex;
+align-items: center;
+text-decoration: none;
+}
+
+.logo img {
+height: 42px; /* sesuaikan tinggi logo agar proporsional */
+width: auto;
+object-fit: contain;
+display: block;
+transition: transform 0.3s ease;
+}
+
+/* efek hover lembut */
+.logo a:hover img {
+transform: scale(1.05);
+}
+
+        /* ========== NAVIGATION ========== */
+        .nav {
+            grid-area: nav;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            list-style: none;
+            gap: 15px;
+            flex-wrap: nowrap;
+        }
+
+        .nav li {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .nav a {
+            color: #333;
+            font-weight: 500;
+            padding: 10px 18px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+            border-radius: 8px;
+            white-space: nowrap;
+            font-size: 15px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: #2196F3;
+            background: rgba(33, 150, 243, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .nav a.active {
+            color: #2196F3;
+            background: rgba(33, 150, 243, 0.15);
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
+        }
+
+        .nav a:not(.active)::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #2196F3;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav a:not(.active):hover::after {
+            width: 70%;
+        }
+
+        .nav a.active::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: #2196F3;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: translateX(-50%) scale(1.3);
+            }
+        }
+
+        .nav li:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 20px;
+            background: linear-gradient(to bottom, 
+                transparent, 
+                rgba(74, 74, 74, 0.3) 20%, 
+                rgba(74, 74, 74, 0.3) 80%, 
+                transparent
+            );
+        }
+
+        /* ========== HEADER BUTTONS ========== */
+        .header-buttons {
+            grid-area: buttons;
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .btn-outline {
+            padding: 10px 20px;
+            border: 2px solid #2196F3;
+            background: transparent;
+            color: #2196F3;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-outline:hover {
+            background: #2196F3;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+        }
+
+        .btn-primary {
+            padding: 10px 20px;
+            border: none;
+            background: #2196F3;
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background: #1976D2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
+        }
+
+        /* ========== MOBILE MENU TOGGLE ========== */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: 2px solid #2196F3;
+            color: #2196F3;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            grid-area: toggle;
+            justify-self: end;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: #2196F3;
+            color: white;
+        }
+
+        /* ========== DEMO CONTENT ========== */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .content p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* ========== RESPONSIVE BREAKPOINTS ========== */
+        
+        /* Large Tablets (768px - 1024px) */
+        @media screen and (max-width: 1024px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .nav ul {
+                gap: 10px;
+            }
+            
+            .nav a {
+                padding: 8px 14px;
+                font-size: 14px;
+            }
+            
+            .nav li:not(:last-child)::after {
+                right: -5px;
+            }
+        }
+
+        /* Medium Tablets (600px - 768px) */
+        @media screen and (max-width: 768px) {
+            .logo a {
+                font-size: 18px;
+            }
+            
+            .nav ul {
+                gap: 8px;
+            }
+            
+            .nav a {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            
+            .btn-outline, .btn-primary {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
+
+        /* Small Tablets & Large Phones (480px - 600px) */
+        @media screen and (max-width: 600px) {
+            .header-content {
+                grid-template-columns: auto 1fr auto;
+                grid-template-areas: 
+                    "logo buttons toggle";
+                gap: 10px;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav {
+                grid-area: nav;
+                grid-column: 1 / -1;
+                position: relative;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                            opacity 0.3s ease,
+                            padding 0.4s ease;
+                background: white;
+                border-radius: 8px;
+                margin-top: 0;
+            }
+            
+            .nav.active {
+                max-height: 500px;
+                opacity: 1;
+                padding: 10px 0;
+                margin-top: 10px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav ul {
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+            }
+            
+            .nav li {
+                width: 100%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+            
+            .nav li:last-child {
+                border-bottom: none;
+            }
+            
+            .nav li:not(:last-child)::after {
+                display: none;
+            }
+            
+            .nav a {
+                display: block;
+                width: 100%;
+                padding: 14px 20px;
+                text-align: left;
+                font-size: 15px;
+                border-radius: 0;
+            }
+            
+            .nav a.active::before {
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        /* Standard Mobile Phones (360px - 480px) */
+        /* INI RANGE YANG MENCAKUP 411px */
+        @media screen and (max-width: 480px) {
+            .header {
+                padding: 12px 0;
+            }
+            
+            .container {
+                padding: 0 12px;
+            }
+            
+            .header-content {
+                gap: 8px;
+            }
+            
+            .logo a {
+                font-size: 17px;
+            }
+            
+            .btn-outline, .btn-primary {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+            
+            .header-buttons {
+                gap: 8px;
+            }
+            
+            .mobile-menu-toggle {
+                padding: 6px 10px;
+                font-size: 18px;
+            }
+        }
+
+        /* Small Mobile Phones (< 360px) */
+         @media screen and (max-width: 480px) {
+             .logo img {
+             height: 36px;
+            }
+            
+            .btn-outline, .btn-primary {
+                padding: 7px 12px;
+                font-size: 11px;
+            }
+            
+            .header-buttons {
+                gap: 6px;
+            }
+        }
+
+        /* Extra specificity for problematic viewport sizes */
+        @media screen and (min-width: 400px) and (max-width: 450px) {
+            /* Specifically targeting 411px range */
+            .header-content {
+                grid-template-columns: auto 1fr auto;
+                grid-template-areas: 
+                    "logo buttons toggle";
+            }
+            
+            .mobile-menu-toggle {
+                display: block !important;
+            }
+            
+            .nav {
+                grid-column: 1 / -1 !important;
+                max-height: 0 !important;
+                opacity: 0 !important;
+            }
+            
+            .nav.active {
+                max-height: 500px !important;
+                opacity: 1 !important;
+            }
+        }
+
+/* About Section */
+.about-section {
+    padding: 80px 0;
+    background: linear-gradient(to bottom, #e3f2fd 0%, #ffffff 25%, #ffffff 75%, #e3f2fd 100%);
+}
+
+/* Header Title */
+.about-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.about-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Content Section (Logo + Description) */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 100px;
+    padding: 0 40px;
+}
+
+.prismo-intro {
+    text-align: center;
+}
+
+.prismo-logo-text {
+    font-size: 48px;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: 8px;
+    margin: 0;
+}
+
+.prismo-description {
+    color: #555;
+    line-height: 1.8;
+}
+
+.prismo-description p {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.prismo-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* Features Section (2 Columns) - Untuk Pelanggan & Mitra */
+.features-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+    padding: 0 40px;
+    margin-bottom: 40px;
+}
+
+.feature-card {
+    text-align: center;
+    background: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.feature-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+
+.feature-icon1,
+.feature-icon2 {
+    margin: 30px auto;
+    width: 120px;
+    height: 120px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* PERBAIKAN: Gunakan path relatif */
+.feature-icon1 {
+    background-image: url('/images/upelanggan.jpg');
+}
+
+.feature-icon2 {
+    background-image: url('/images/umitra.jpg');
+}
+
+.feature-description {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.8;
+    text-align: justify;
+    margin: 0;
+}
+
+/* Features Section - Kenapa Pilih Prismo */
+.features {
+    padding: 80px 0;
+    background: #f8fafc;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* PERBAIKAN: Grid 3 kolom untuk desktop */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.feature-box {
+    background: white;
+    padding: 40px 25px;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.feature-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(33, 150, 243, 0.12);
+}
+
+.feature-icon-wrapper {
+    margin-bottom: 25px;
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 32px;
+    color: white;
+    transition: all 0.4s ease;
+}
+
+.feature-box:hover .feature-icon {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.feature-content {
+    margin-top: 20px;
+}
+
+.feature-number {
+    font-size: 36px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.feature-label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2196F3;
+    margin-bottom: 12px;
+}
+
+.feature-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* CTA Section */
+.cta {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    color: white;
+}
+
+.cta-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.cta-subtitle {
+    font-size: 21px;
+    font-weight: 350;
+    margin-bottom: 40px;
+    line-height: 1.8;
+    opacity: 0.95;
+}
+
+.btn-cta {
+    padding: 18px 50px;
+    background: white;
+    color: #2196F3;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.btn-cta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+    background: #f0f9ff;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS - TENTANG PAGE
+   ============================================ */
+
+/* Tablet & Below (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 20px;
+        margin-bottom: 60px;
+    }
+    
+    .about-title {
+        font-size: 24px;
+    }
+    
+    .features-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 20px;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Mobile (max-width: 480px) */
+@media screen and (max-width: 480px) {
+    .about-section {
+        padding: 40px 0;
+    }
+    
+    .about-header {
+        margin-bottom: 40px;
+    }
+    
+    .about-title {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+    
+    .about-content {
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+    
+    .prismo-description p {
+        font-size: 14px;
+    }
+    
+    .features-section {
+        gap: 30px;
+    }
+    
+    .feature-card {
+        padding: 30px 20px;
+    }
+    
+    .feature-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .feature-icon1,
+    .feature-icon2 {
+        width: 100px;
+        height: 100px;
+        margin: 20px auto;
+    }
+    
+    .feature-description {
+        font-size: 14px;
+    }
+    
+    .features {
+        padding: 60px 0;
+    }
+    
+    .section-header {
+        margin-bottom: 40px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .section-subtitle {
+        font-size: 16px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .cta {
+        padding: 60px 0;
+    }
+    
+    .cta-title {
+        font-size: 28px;
+    }
+    
+    .cta-subtitle {
+        font-size: 16px;
+    }
+}
+
+/* Footer */
+.footer {
+    background: #1D222F;
+    color: #ccc;
+    padding: clamp(40px, 8vw, 60px) 20px clamp(20px, 4vw, 30px);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: clamp(30px, 5vw, 60px);
+    margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.footer-logo-img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.footer-description {
+    font-size: clamp(13px, 2vw, 14px);
+    line-height: 1.8;
+    margin-bottom: 25px;
+    color: #c5c9d0;
+}
+
+.footer-subtitle {
+    font-size: clamp(16px, 3vw, 18px);
+    font-weight: 600;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #c5c9d0;
+    font-size: clamp(13px, 2vw, 14px);
+    transition: all 0.3s ease;
+}
+
+.social-link i {
+    width: 20px;
+    color: #005eff;
+}
+
+.social-link:hover {
+    color: #005eff;
+}
+
+.social-link:hover i {
+    color: #005eff;
+}
+
+.footer-title {
+    font-size: clamp(16px, 3vw, 18px);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #c5c9d0;
+    font-size: clamp(13px, 2vw, 14px);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #005eff;
+    padding-left: 5px;
+}
+
+.footer-contact {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-contact li {
+    margin-bottom: 15px;
+    font-size: clamp(13px, 2vw, 14px);
+    color: #c5c9d0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.footer-contact i {
+    color: #005eff;
+    width: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid #3d4a5c;
+    color: #ffffff;
+    font-size: clamp(12px, 2vw, 14px);
+}
+
+
