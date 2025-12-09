@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mitra;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Booking;
 use App\Models\User;
 
@@ -11,13 +12,13 @@ class AntrianController extends Controller
 {
     public function index()
     {
-        $mitra = auth()->user();
+        $mitra = Auth::user();
         
         // Get only confirmed bookings (not cek_transaksi) for this mitra
         $antrian = Booking::where('mitra_id', $mitra->id)
             ->whereIn('status', ['menunggu', 'proses', 'selesai', 'dibatalkan'])
             ->with(['customer'])
-            ->orderByRaw("FIELD(status, 'menunggu', 'proses', 'selesai', 'dibatalkan')")
+            ->orderByRaw("FIELD(status, ?, ?, ?, ?)", ['menunggu', 'proses', 'selesai', 'dibatalkan'])
             ->orderBy('booking_date', 'asc')
             ->orderBy('booking_time', 'asc')
             ->get()
@@ -50,10 +51,18 @@ class AntrianController extends Controller
     
     public function updateStatus(Request $request)
     {
-        $mitra = auth()->user();
+        $mitra = Auth::user();
+        
+        // Verify mitra role
+        if ($mitra->role !== 'mitra') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized access'
+            ], 403);
+        }
         
         $validated = $request->validate([
-            'booking_id' => 'required|integer',
+            'booking_id' => 'required|integer|min:1',
             'status' => 'required|in:proses,selesai',
         ]);
         

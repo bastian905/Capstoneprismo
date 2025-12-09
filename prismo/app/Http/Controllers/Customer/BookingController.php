@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Booking;
 use App\Models\Review;
 
@@ -11,7 +12,12 @@ class BookingController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
+        $user = Auth::user();
+        
+        // Verify customer role
+        if ($user->role !== 'customer') {
+            abort(403, 'Unauthorized access');
+        }
         
         // Current booking (status: cek_transaksi, menunggu, proses - exclude dibatalkan and selesai)
         $currentBooking = Booking::where('customer_id', $user->id)
@@ -91,7 +97,7 @@ class BookingController extends Controller
     
     public function reschedule(Request $request)
     {
-        $user = auth()->user();
+        $user = Auth::user();
         
         $validated = $request->validate([
             'booking_code' => 'required|string',
@@ -137,7 +143,7 @@ class BookingController extends Controller
     
     public function submitReview(Request $request)
     {
-        $user = auth()->user();
+        $user = Auth::user();
         
         $validated = $request->validate([
             'booking_code' => 'required|string',
@@ -200,7 +206,7 @@ class BookingController extends Controller
     
     public function updateReview(Request $request)
     {
-        $user = auth()->user();
+        $user = Auth::user();
         
         $validated = $request->validate([
             'booking_code' => 'required|string',

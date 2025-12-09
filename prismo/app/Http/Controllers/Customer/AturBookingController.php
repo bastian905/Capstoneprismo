@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\MitraProfile;
 
@@ -11,8 +12,19 @@ class AturBookingController extends Controller
 {
     public function show($mitraId)
     {
-        $mitra = User::where('id', $mitraId)
+        // Validate input to prevent SQL injection
+        if (!is_numeric($mitraId) || $mitraId < 1) {
+            abort(404);
+        }
+        
+        // Verify customer role
+        if (!Auth::check() || Auth::user()->role !== 'customer') {
+            abort(403, 'Unauthorized access');
+        }
+        
+        $mitra = User::where('id', (int)$mitraId)
             ->where('role', 'mitra')
+            ->where('approval_status', 'approved')
             ->with('mitraProfile')
             ->firstOrFail();
         
@@ -98,7 +110,7 @@ class AturBookingController extends Controller
         }
         
         // Get customer points
-        $customer = auth()->user();
+        $customer = Auth::user();
         $customerPoints = $customer->points ?? 0;
         
         $businessData = [

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mitra;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Booking;
 use App\Models\User;
 use Carbon\Carbon;
@@ -13,7 +14,7 @@ class FinancialReportController extends Controller
 {
     public function getReportData(Request $request)
     {
-        $mitra = auth()->user();
+        $mitra = Auth::user();
         $period = $request->get('period', 'daily'); // daily, weekly, monthly, yearly
         $date = $request->get('date', now()->toDateString());
         
@@ -24,7 +25,7 @@ class FinancialReportController extends Controller
     
     public function exportPDF(Request $request)
     {
-        $mitra = auth()->user();
+        $mitra = Auth::user();
         $period = $request->get('period', 'daily');
         $date = $request->get('date', now()->toDateString());
         
@@ -42,7 +43,7 @@ class FinancialReportController extends Controller
     
     public function exportExcel(Request $request)
     {
-        $mitra = auth()->user();
+        $mitra = Auth::user();
         $period = $request->get('period', 'daily');
         $date = $request->get('date', now()->toDateString());
         

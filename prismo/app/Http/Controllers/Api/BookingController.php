@@ -55,18 +55,25 @@ class BookingController extends Controller
 
     public function store(Request $request)
     {
+        // Verify customer role
+        if (!$request->user() || $request->user()->role !== 'customer') {
+            return response()->json([
+                'message' => 'Unauthorized access'
+            ], 403);
+        }
+        
         $validated = $request->validate([
-            'mitra_id' => 'required|exists:users,id',
-            'service_type' => 'required|string',
-            'vehicle_type' => 'required|string',
-            'vehicle_plate' => 'required|string',
-            'booking_date' => 'required|date',
-            'booking_time' => 'required',
-            'base_price' => 'required|numeric',
-            'discount_amount' => 'nullable|numeric',
-            'final_price' => 'required|numeric',
-            'voucher_code' => 'nullable|string',
-            'payment_method' => 'required|string',
+            'mitra_id' => 'required|integer|exists:users,id',
+            'service_type' => 'required|string|max:100',
+            'vehicle_type' => 'required|string|in:Sedan,SUV,MPV,Truk,Motor',
+            'vehicle_plate' => 'required|string|max:20|regex:/^[A-Z0-9\s-]+$/i',
+            'booking_date' => 'required|date|after_or_equal:today',
+            'booking_time' => 'required|date_format:H:i',
+            'base_price' => 'required|numeric|min:0|max:10000000',
+            'discount_amount' => 'nullable|numeric|min:0',
+            'final_price' => 'required|numeric|min:0|max:10000000',
+            'voucher_code' => 'nullable|string|max:50|alpha_num',
+            'payment_method' => 'required|string|in:Dana,Gopay,OVO,ShopeePay,QRIS',
         ]);
 
         // Check if customer has active booking (not selesai or dibatalkan)

@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\NotificationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class KelolaMitraController extends Controller
 {
@@ -29,13 +32,11 @@ class KelolaMitraController extends Controller
                     'created_at' => $mitra->created_at->format('Y-m-d')
                 ];
             })
-            ->values() // Convert to array with sequential keys
-            ->toArray(); // Convert Collection to array
+        ->values() // Convert to array with sequential keys
+        ->toArray(); // Convert Collection to array
         
-        \Log::info('Kelola Mitra - Total mitras: ' . count($mitras));
-        \Log::info('Kelola Mitra - Data: ' . json_encode($mitras));
-        
-        return view('admin.kelolamitra.kelolamitra', compact('mitras'));
+        Log::info('Kelola Mitra - Total mitras: ' . count($mitras));
+        Log::info('Kelola Mitra - Data: ' . json_encode($mitras));        return view('admin.kelolamitra.kelolamitra', compact('mitras'));
     }
 
     public function show($id)
@@ -49,6 +50,14 @@ class KelolaMitraController extends Controller
 
     public function approve($id)
     {
+        // Verify admin access
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized access'
+            ], 403);
+        }
+        
         $mitra = User::findOrFail($id);
         $mitra->approval_status = 'approved';
         $mitra->save();
@@ -80,9 +89,9 @@ class KelolaMitraController extends Controller
         
         // Kirim email notifikasi
         try {
-            \Mail::to($mitra->email)->send(new \App\Mail\MitraRejectedMail($mitra, $request->reject_reason));
+            Mail::to($mitra->email)->send(new \App\Mail\MitraRejectedMail($mitra, $request->reject_reason));
         } catch (\Exception $e) {
-            \Log::error('Failed to send rejection email: ' . $e->getMessage());
+            Log::error('Failed to send rejection email: ' . $e->getMessage());
         }
 
         return response()->json(['success' => true, 'message' => 'Mitra berhasil ditolak dan email notifikasi telah dikirim']);

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfilePhotoController;
 use App\Http\Controllers\ChangePasswordController;
@@ -46,12 +47,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/mitra/form-mitra-pending', function () {
-    if (!auth()->check() || auth()->user()->role !== 'mitra') {
+    if (!Auth::check() || Auth::user()->role !== 'mitra') {
         return redirect('/login');
     }
     
     // Jika status rejected, redirect ke form untuk mengisi ulang
-    if (auth()->user()->approval_status === 'rejected') {
+    if (Auth::user()->approval_status === 'rejected') {
         return redirect('/mitra/form-mitra')->with('info', 'Pendaftaran Anda ditolak. Silakan perbaiki dan kirim ulang formulir.');
     }
     
