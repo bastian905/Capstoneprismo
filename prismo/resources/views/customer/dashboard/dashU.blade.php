@@ -279,6 +279,7 @@
     </script>
     <script src="{{ asset('js/browser-notification.js') }}"></script>
     <script src="{{ asset('js/notification-system.js') }}"></script>
+    <script src="{{ asset('js/prevent-back.js') }}"></script>
     <script src="{{ asset('js/dashU.js') }}?v={{ time() }}"></script>
     <script>
         // Listen untuk update avatar dari halaman profil

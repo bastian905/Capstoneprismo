@@ -22,16 +22,17 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 $user = Auth::guard($guard)->user();
                 
+                // Use replace() to prevent back button from working
                 // Redirect based on user role
                 switch ($user->role) {
                     case 'admin':
-                        return redirect('/admin/dashboard');
+                        return redirect('/admin/dashboard')->with('_no_back', true);
                     case 'mitra':
-                        return redirect('/mitra/dashboard/dashboard');
+                        return redirect('/mitra/dashboard/dashboard')->with('_no_back', true);
                     case 'customer':
-                        return redirect('/customer/dashboard/dashU');
+                        return redirect('/customer/dashboard/dashU')->with('_no_back', true);
                     default:
-                        return redirect('/');
+                        return redirect('/')->with('_no_back', true);
                 }
             }
         }

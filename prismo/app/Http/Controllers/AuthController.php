@@ -21,7 +21,11 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Regenerate session to prevent session fixation
             $request->session()->regenerate();
+            
+            // Invalidate previous session
+            $request->session()->migrate(true);
             
             // Check if email is verified
             if (!Auth::user()->email_verified_at) {
